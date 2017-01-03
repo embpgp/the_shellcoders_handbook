@@ -1,0 +1,79 @@
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.04) 7.11.1
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./triangle...done.
+(gdb) b main
+Breakpoint 1 at 0x80484a9: file triangle.c, line 11.
+(gdb) r
+
+Breakpoint 1, main (argc=1, argv=0xbffff214) at triangle.c:11
+11		int ret = triangle(4,2);
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x08048498 <+0>:	lea    0x4(%esp),%ecx
+   0x0804849c <+4>:	and    $0xfffffff0,%esp
+   0x0804849f <+7>:	pushl  -0x4(%ecx)
+   0x080484a2 <+10>:	push   %ebp
+   0x080484a3 <+11>:	mov    %esp,%ebp
+   0x080484a5 <+13>:	push   %ecx
+   0x080484a6 <+14>:	sub    $0x14,%esp
+=> 0x080484a9 <+17>:	sub    $0x8,%esp
+   0x080484ac <+20>:	push   $0x2
+   0x080484ae <+22>:	push   $0x4
+   0x080484b0 <+24>:	call   0x804843b <triangle>
+   0x080484b5 <+29>:	add    $0x10,%esp
+   0x080484b8 <+32>:	mov    %eax,-0xc(%ebp)
+   0x080484bb <+35>:	mov    -0xc(%ebp),%eax
+   0x080484be <+38>:	mov    -0x4(%ebp),%ecx
+   0x080484c1 <+41>:	leave  
+   0x080484c2 <+42>:	lea    -0x4(%ecx),%esp
+   0x080484c5 <+45>:	ret    
+End of assembler dump.
+(gdb) disassemble tr
+tr_break              tr_old_realloc_hook   transitions           trecurse              truncate64.c
+tr_freehook           tr_reallochook        translit_from_idx     tree_lock             try
+tr_mallochook         tr_where              translit_from_tbl     triangle              trytimeout
+tr_memalignhook       trace                 translit_to_idx       triangle.c            
+tr_old_free_hook      trace_arg             translit_to_tbl       triple_val            
+tr_old_malloc_hook    transcmp              transmem_block_t      truncate              
+tr_old_memalign_hook  transit_state_bkref   transmem_list         truncate64            
+(gdb) disassemble tri
+triangle    triangle.c  triple_val  
+(gdb) disassemble triangle
+Dump of assembler code for function triangle:
+   0x0804843b <+0>:	push   %ebp
+   0x0804843c <+1>:	mov    %esp,%ebp
+   0x0804843e <+3>:	sub    $0x28,%esp
+   0x08048441 <+6>:	mov    %gs:0x14,%eax
+   0x08048447 <+12>:	mov    %eax,-0xc(%ebp)
+   0x0804844a <+15>:	xor    %eax,%eax
+   0x0804844c <+17>:	movl   $0x0,-0x20(%ebp)
+   0x08048453 <+24>:	movl   $0x1,-0x1c(%ebp)
+   0x0804845a <+31>:	movl   $0x2,-0x18(%ebp)
+   0x08048461 <+38>:	movl   $0x3,-0x14(%ebp)
+   0x08048468 <+45>:	movl   $0x4,-0x10(%ebp)
+   0x0804846f <+52>:	mov    0x8(%ebp),%eax
+   0x08048472 <+55>:	imul   0xc(%ebp),%eax
+   0x08048476 <+59>:	mov    %eax,%edx
+   0x08048478 <+61>:	shr    $0x1f,%edx
+   0x0804847b <+64>:	add    %edx,%eax
+   0x0804847d <+66>:	sar    %eax
+   0x0804847f <+68>:	mov    %eax,-0x24(%ebp)
+   0x08048482 <+71>:	mov    -0x24(%ebp),%eax
+   0x08048485 <+74>:	mov    -0xc(%ebp),%ecx
+   0x08048488 <+77>:	xor    %gs:0x14,%ecx
+   0x0804848f <+84>:	je     0x8048496 <triangle+91>
+   0x08048491 <+86>:	call   0x8048310 <__stack_chk_fail@plt>
+   0x08048496 <+91>:	leave  
+   0x08048497 <+92>:	ret 

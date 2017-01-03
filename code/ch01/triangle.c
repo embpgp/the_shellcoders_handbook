@@ -4,3 +4,11 @@ int area;
 area = width * height/2;
 return (area);
 }
+
+
+int main(int argc, char *argv[])
+{
+	int ret = triangle(4,2);
+	return ret;
+
+}
